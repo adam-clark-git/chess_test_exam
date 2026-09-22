@@ -8,9 +8,23 @@ import java.util.Collection;
  * Note: You can add to this class, but you may not alter
  * signature of the existing methods.
  */
+import java.util.*;
 public class ChessPiece {
-
+    private ChessGame.TeamColor pieceColor;
+    private ChessPiece.PieceType pieceType;
     public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        ChessPiece other =  (ChessPiece) obj;
+        return other.getPieceType() != getPieceType() || other.getTeamColor() != getTeamColor();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pieceColor, pieceType);
     }
 
     /**

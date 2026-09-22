@@ -6,10 +6,42 @@ package chess;
  * Note: You can add to this class, but you may not alter
  * signature of the existing methods.
  */
+import java.util.*;
 public class ChessBoard {
-
+    private ChessPiece[][] board = new ChessPiece[8][8];
     public ChessBoard() {
         
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        ChessBoard other =  (ChessBoard) obj;
+        for (int i = 1; i <= 8; i++) {
+            for (int j = 1; j <= 8; j++) {
+                ChessPosition pos = new ChessPosition(i,j);
+                if (!other.getPiece(pos).equals(getPiece(pos))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.deepHashCode(board);
+    }
+
+    @Override
+    public String toString() {
+        for (int i = 1; i <= 8; i++) {
+            for (int j = 1; j <= 8; j++) {
+                System.out.println(" " + getPiece(new ChessPosition(i,j)).toString());
+            }
+            System.out.println("\n");
+        }
     }
 
     /**

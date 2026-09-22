@@ -6,9 +6,23 @@ package chess;
  * Note: You can add to this class, but you may not alter
  * signature of the existing methods.
  */
+import java.util.*;
 public class ChessPosition {
-
+    private int row;
+    private int col;
     public ChessPosition(int row, int col) {
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        ChessPosition other =  (ChessPosition) obj;
+        return other.getRow() != getRow() || other.getColumn() != getColumn();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, col);
     }
 
     /**
