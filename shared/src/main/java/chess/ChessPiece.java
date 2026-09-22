@@ -90,26 +90,13 @@ public class ChessPiece {
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
         PieceMoves moveSet = new PieceMoves(board, myPosition, getTeamColor());
         switch (pieceType) {
-            case BISHOP:
-                return PieceMoves.getBishopMoves();
-                break;
-            case ROOK:
-                return PieceMoves.getRookMoves(board, myPosition);
-                break;
-            case KNIGHT:
-                return PieceMoves.getKnightMoves(board, myPosition);
-                break;
-            case QUEEN:
-                return PieceMoves.getQueenMoves(board, myPosition);
-                break;
-            case KING:
-                return PieceMoves.getKingMoves();
-                break;
-            case PAWN:
-                return PieceMoves.getPawnMoves();
-                break;
-            case null, default:
-                return null;
+            case BISHOP -> {return moveSet.getBishopMoves();}
+            case ROOK -> {return moveSet.getRookMoves();}
+            case KNIGHT -> {return moveSet.getKnightMoves();}
+            case QUEEN -> {return moveSet.getQueenMoves();}
+            case KING -> {return moveSet.getKingMoves();}
+            case PAWN -> {return moveSet.getPawnMoves();}
+            case null, default-> {return null;}
         }
     }
 }
