@@ -19,7 +19,6 @@ public class ChessMove {
     }
     @Override
     public boolean equals(Object obj) {
-        System.out.println("Should be running this");
         if (obj == this) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         ChessMove other =  (ChessMove) obj;
