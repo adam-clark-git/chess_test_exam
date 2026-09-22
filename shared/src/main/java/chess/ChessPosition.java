@@ -11,13 +11,15 @@ public class ChessPosition {
     private int row;
     private int col;
     public ChessPosition(int row, int col) {
+        this.row = row;
+        this.col = col;
     }
     @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         ChessPosition other =  (ChessPosition) obj;
-        return other.getRow() != getRow() || other.getColumn() != getColumn();
+        return other.getRow() == getRow() && other.getColumn() == getColumn();
     }
 
     @Override
@@ -30,7 +32,7 @@ public class ChessPosition {
      * 1 codes for the bottom row
      */
     public int getRow() {
-        throw new RuntimeException("Not implemented");
+        return row;
     }
 
     /**
@@ -38,6 +40,6 @@ public class ChessPosition {
      * 1 codes for the left column
      */
     public int getColumn() {
-        throw new RuntimeException("Not implemented");
+        return col;
     }
 }
