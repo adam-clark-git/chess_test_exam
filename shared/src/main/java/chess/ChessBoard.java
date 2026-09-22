@@ -21,6 +21,10 @@ public class ChessBoard {
         for (int i = 1; i <= 8; i++) {
             for (int j = 1; j <= 8; j++) {
                 ChessPosition pos = new ChessPosition(i,j);
+                if (other.getPiece(pos) == null) {
+                    if (getPiece(pos) != null) return false;
+                    continue;
+                }
                 if (!other.getPiece(pos).equals(getPiece(pos))) {
                     return false;
                 }
@@ -39,7 +43,11 @@ public class ChessBoard {
         String str = "";
         for (int i = 1; i <= 8; i++) {
             for (int j = 1; j <= 8; j++) {
-                str += " " + getPiece(new ChessPosition(i,j)).toString();
+                if (getPiece(new ChessPosition(i,j)) == null) str += "  ";
+                else {
+                    str += " " + getPiece(new ChessPosition(i,j)).toString();
+                }
+
             }
             str += "\n";
         }
@@ -53,7 +61,7 @@ public class ChessBoard {
      * @param piece    the piece to add
      */
     public void addPiece(ChessPosition position, ChessPiece piece) {
-        throw new RuntimeException("Not implemented");
+        board[position.getRow()-1][position.getColumn()-1] = piece;
     }
 
     /**
@@ -64,7 +72,7 @@ public class ChessBoard {
      * position
      */
     public ChessPiece getPiece(ChessPosition position) {
-        throw new RuntimeException("Not implemented");
+        return board[position.getRow()-1][position.getColumn()-1];
     }
 
     /**
@@ -72,6 +80,33 @@ public class ChessBoard {
      * (How the game of chess normally starts)
      */
     public void resetBoard() {
-        throw new RuntimeException("Not implemented");
+        board = new ChessPiece[8][8];
+        pawnRow(ChessGame.TeamColor.WHITE);
+        pawnRow(ChessGame.TeamColor.BLACK);
+        backRow(ChessGame.TeamColor.BLACK);
+        backRow(ChessGame.TeamColor.WHITE);
+    }
+    public void pawnRow(ChessGame.TeamColor color) {
+        int row = 2;
+        if (color == ChessGame.TeamColor.BLACK) {
+            row = 7;
+        }
+        for (int i = 1; i <= 8; i++) {
+            addPiece(new ChessPosition(row, i), new ChessPiece(color, ChessPiece.PieceType.PAWN));
+        }
+    }
+    public void backRow(ChessGame.TeamColor color) {
+        int row = 1;
+        if (color == ChessGame.TeamColor.BLACK) {
+            row = 8;
+        }
+        addPiece(new ChessPosition(row, 1), new ChessPiece(color, ChessPiece.PieceType.ROOK));
+        addPiece(new ChessPosition(row, 2), new ChessPiece(color, ChessPiece.PieceType.KNIGHT));
+        addPiece(new ChessPosition(row, 3), new ChessPiece(color, ChessPiece.PieceType.BISHOP));
+        addPiece(new ChessPosition(row, 4), new ChessPiece(color, ChessPiece.PieceType.QUEEN));
+        addPiece(new ChessPosition(row, 5), new ChessPiece(color, ChessPiece.PieceType.KING));
+        addPiece(new ChessPosition(row, 6), new ChessPiece(color, ChessPiece.PieceType.BISHOP));
+        addPiece(new ChessPosition(row, 7), new ChessPiece(color, ChessPiece.PieceType.KNIGHT));
+        addPiece(new ChessPosition(row, 8), new ChessPiece(color, ChessPiece.PieceType.ROOK));
     }
 }
