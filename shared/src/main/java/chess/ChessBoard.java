@@ -36,12 +36,14 @@ public class ChessBoard {
 
     @Override
     public String toString() {
+        String str = "";
         for (int i = 1; i <= 8; i++) {
             for (int j = 1; j <= 8; j++) {
-                System.out.println(" " + getPiece(new ChessPosition(i,j)).toString());
+                str += " " + getPiece(new ChessPosition(i,j)).toString();
             }
-            System.out.println("\n");
+            str += "\n";
         }
+        return str;
     }
 
     /**
