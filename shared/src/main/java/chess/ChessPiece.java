@@ -28,6 +28,31 @@ public class ChessPiece {
     public int hashCode() {
         return Objects.hash(pieceColor, pieceType);
     }
+    @Override
+    public String toString() {
+        String str = "";
+        switch (pieceType) {
+            case KING:
+                str = "K ";
+                break;
+            case PAWN:
+                str = "P ";
+                break;
+            case KNIGHT:
+                str = "N ";
+                break;
+            case ROOK:
+                str = "R ";
+                break;
+            case QUEEN:
+                str = "Q ";
+                break;
+            case BISHOP:
+                str ="B ";
+                break;
+        }
+        return str;
+    }
 
     /**
      * The various different chess piece options
